@@ -3,3 +3,9 @@
 .DS_Store
 .AppleDouble
 .LSOverride
+
+### venv
+/venv/
+
+### mo9mo9
+.env
