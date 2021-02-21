@@ -5,3 +5,9 @@ ddl/
 ERD/
     draw.ioで書かれたERD
 ```
+
+# 準備事項
+## 必要になるパッケージ
+- pip3 install PyMySQL
+- pip3 install python-dotenv
+- pip3 install sqlalchemy
