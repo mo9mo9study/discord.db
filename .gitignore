@@ -4,8 +4,11 @@
 .AppleDouble
 .LSOverride
 
-### venv
-/venv/
+### Python ###
+__pycache__/
 
-### mo9mo9
+### venv ###
+*venv/
+
+### mo9mo9 ###
 .env
