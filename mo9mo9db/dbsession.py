@@ -24,9 +24,11 @@ def get_db_session():
 
 def get_db_engine():
     db_path = f'mysql+pymysql://{cfg.DB_user}:{cfg.DB_password}@{cfg.DB_host}:{cfg.DB_port}/{cfg.DB_database}'
-    engine = create_engine(db_path, encoding='utf-8', pool_size=5, convert_unicode=True, echo=True)
-        if not database_exists(engine.url): # DBの存在チェックと作成用
-            create_database(engine.url)
-    Base.metadata.create_all(engine)
-    #Base.metadata.drop_all(engine) #開発用
+    engine = create_engine(db_path, 
+                           encoding='utf-8', 
+                           pool_size=5, 
+                           convert_unicode=True, 
+                           echo=True)
+    if not database_exists(engine.url): # DBの存在チェックと作成用
+        create_database(engine.url)
     return engine
