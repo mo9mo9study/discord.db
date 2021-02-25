@@ -3,11 +3,13 @@ from datetime import datetime
 from sqlalchemy import Column, String, Integer, DateTime, Boolean
 from sqlalchemy.ext.declarative import declarative_base
 
+from base_mixin import DBBaseMixin
+from dbsession import get_db_engine
+
+engine = get_db_engine()
 Base = declarative_base()
 
-class Studytimelogs(Base):
-    __tablename__ = "studytimelogs"
-    no = Column(Integer, primary_key=True, autoincrement=True)
+class Studytimelogs(DBBaseMixin, Base):
     study_dt = Column(DateTime, unique=False)
     guild_id = Column(String(20), unique=False)
     member_id = Column(String(20), unique=False)
@@ -24,9 +26,7 @@ class Studytimelogs(Base):
         self.studytag_no = studytag_no
 
 
-class Studymembers(Base):
-    __tablename__ = "studymembers"
-    update_dt = Column(DateTime(timezone=True), onupdate=datetime.now(), unique=False)
+class Studymembers(DBBaseMixin, Base):
     guild_id = Column(String(20), unique=False)
     member_id = Column(String(20), unique=True, primary_key=True)
     member_name = Column(String(40), unique=True)
@@ -37,8 +37,6 @@ class Studymembers(Base):
     enrollment = Column(Boolean) 
     
     def __init__(self, guild_id=None, member_id=None, member_name=None, selfintroduction_id=None, times_id=None, joined_dt=None, organize=None, enrollment=None):
-    #def __init__(self, update_dt=None, guild_id=None, member_id=None, member_name=None, selfintroduction_id=None, attendance=None):
-        #self.update_dt = update_dt
         self.guild_id = guild_id
         self.member_id = member_id
         self.member_name = member_name
@@ -49,10 +47,7 @@ class Studymembers(Base):
         self.enrollment = enrollment
     
 
-class Studytags(Base):
-    __tablename__ = "studytags"
-    no = Column(Integer, primary_key=True, autoincrement=True)
-    update_dt = Column(DateTime(timezone=True), onupdate=datetime.now(), unique=False)
+class Studytags(DBBaseMixin, Base):
     member_id = Column(String(20), unique=True)
     tag_name = Column(String(40), unique=True)
     tag_default = Column(Boolean)
@@ -61,3 +56,7 @@ class Studytags(Base):
         self.member_id = member_id
         self.tag_name = tag_name
         self.tag_default = tag_default
+
+
+#Base.metadata.drop_all(bind=engine)
+Base.metadata.create_all(bind=engine)
