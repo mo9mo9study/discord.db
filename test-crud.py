@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import sys
+import inspect  # noqa: F401
 from pprint import pprint
 
 dbmodule_path = "/home/centos/work/discord.db/mo9mo9db"
