@@ -1,13 +1,20 @@
 # -*- coding: utf-8 -*-
+import os
+import sys
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
-from sqlalchemy_utils import database_exists, create_database, drop_database
+from sqlalchemy_utils import database_exists, create_database
 from sqlalchemy.ext.declarative import declarative_base
 
-import dbconfig as cfg
-
+dirpath = os.path.dirname(__file__)
+sys.path.append(dirpath)
+print(f"--->追加したパス： {dirpath}")
+print(f"--->sys.path　： {sys.path}")
+import dbconfig as cfg  # noqa: E402
 
 Base = declarative_base()
+
 
 def get_db_session():
     """
@@ -22,13 +29,21 @@ def get_db_session():
     return db_session
 
 
+def db_path():
+    user = cfg.DB_user
+    pw = cfg.DB_password
+    host = cfg.DB_host
+    port = cfg.DB_port
+    db = cfg.DB_database
+    return f'mysql+pymysql://{user}:{pw}@{host}:{port}/{db}'
+
+
 def get_db_engine():
-    db_path = f'mysql+pymysql://{cfg.DB_user}:{cfg.DB_password}@{cfg.DB_host}:{cfg.DB_port}/{cfg.DB_database}'
-    engine = create_engine(db_path, 
-                           encoding='utf-8', 
-                           pool_size=5, 
-                           convert_unicode=True, 
+    engine = create_engine(db_path(),
+                           encoding='utf-8',
+                           pool_size=5,
+                           convert_unicode=True,
                            echo=True)
-    if not database_exists(engine.url): # DBの存在チェックと作成用
+    if not database_exists(engine.url):  # DBの存在チェックと作成用
         create_database(engine.url)
     return engine
