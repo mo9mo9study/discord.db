@@ -21,14 +21,7 @@ ERD/
 git config core.hooksPath .githooks
 ```
 
-# 当リポジトリのファイルを事項するための準備
-## 環境はvenvにて作成しています
-## 実行に必要なパッケージはrequirements.txtに記載しています
+# 当リポジトリの自作パッケージを使うための準備
 ```py
-# pythonの仮想環境を作成する
-python3 -m venv venv
-# 仮想環境にアタッチする
-source venv/bin/activate
-# 必要なパッケージを仮想環境ないでインストールする
-pip3 install -r requirements.txt
+pip install -i https://test.pypi.org/simple/ mo9mo9db
 ```
