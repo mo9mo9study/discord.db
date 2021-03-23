@@ -1,3 +1,9 @@
+# 当リポジトリの自作パッケージを使うための準備
+```py
+pip install -i https://test.pypi.org/simple/ mo9mo9db
+```
+
+# about
 ```
 ddl/
     master/create_table.sql : DDL文。これをDBに流し込めば本番環境と同じ状態になるよう保つ。
@@ -5,10 +11,6 @@ ddl/
 ERD/
     draw.ioで書かれたERD
 ```
-# Future
-- 今後は当リポジトリで記載しているファイル群をpipでインストールできる様にする
-- 今後pep8に準拠した書式で記載する
-
 
 # commit時のローカル運用
 - ディレクトリ[.githooks/]にてcommitをトリガーに動く処理を記載しています
@@ -21,7 +23,5 @@ ERD/
 git config core.hooksPath .githooks
 ```
 
-# 当リポジトリの自作パッケージを使うための準備
-```py
-pip install -i https://test.pypi.org/simple/ mo9mo9db
-```
+# Future
+-
