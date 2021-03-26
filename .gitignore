@@ -3,3 +3,15 @@
 .DS_Store
 .AppleDouble
 .LSOverride
+
+### Python ###
+__pycache__/
+*venv/
+
+### pypi ###
+build/
+dist/
+*.egg-info/
+
+### mo9mo9 ###
+.env
