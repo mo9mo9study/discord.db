@@ -31,5 +31,5 @@ git config core.hooksPath .githooks
 ```
 # setup.cfgのバージョンを更新すること
 python setup.py bdist_wheel
-pip install -i https://test.pypi.org/simple/ mo9mo9db
+twine upload --repository pypi dist/*
 ```
