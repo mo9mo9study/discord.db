@@ -1,9 +1,9 @@
 from datetime import datetime
 
 from sqlalchemy import Column, Integer, DateTime
-from sqlalchemy.ext.declarative import declarative_base, declared_attr
+from sqlalchemy.ext.declarative import declared_attr
 
-from dbsession import get_db_session
+from mo9mo9db.dbsession import get_db_session
 
 
 class DBBaseMixin(object):
@@ -11,7 +11,7 @@ class DBBaseMixin(object):
 
     def __repr__(self):
         return '<{0}.{1} object at {2}>'.format(
-        self.__module__, type(self).__name__, hex(id(self)))
+            self.__module__, type(self).__name__, hex(id(self)))
 
     @declared_attr
     def created_at(cls):
@@ -40,7 +40,7 @@ class DBBaseMixin(object):
     def get(cls, session, pk):
         # primarykeyをフィルターに取得する方法
         return cls.objects(session).get(pk)
-    
+
     @classmethod
     def select(cls, session, conditions):
         return cls.objects(session).filter(conditions).all()
@@ -59,15 +59,10 @@ class DBBaseMixin(object):
         return objs
 
     def delete(self, session):
-        self.objects(session).filter(self.__class__.id==self.id).delete()
+        self.objects(session).filter(self.__class__.id == self.id).delete()
         session.commit()
 
     def save(self, session):
         session.add(self)
         session.commit()
         return self
-
-    
-
-
-    
