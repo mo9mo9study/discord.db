@@ -1,6 +1,7 @@
 # 当リポジトリの自作パッケージを使うための準備
 ```py
-pip install -i https://test.pypi.org/simple/ mo9mo9db
+pip install mo9mo9db
+# https://pypi.org/project/mo9mo9db/
 ```
 
 # about
@@ -25,3 +26,10 @@ git config core.hooksPath .githooks
 
 # Future
 -
+
+# pypiに新しいバージョンをuploadする簡易手順
+```
+# setup.cfgのバージョンを更新すること
+python setup.py bdist_wheel
+pip install -i https://test.pypi.org/simple/ mo9mo9db
+```
