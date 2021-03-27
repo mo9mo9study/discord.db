@@ -1,8 +1,8 @@
 from sqlalchemy import Column, String, Integer, DateTime, Boolean
 from sqlalchemy.ext.declarative import declarative_base
 
-from base_mixin import DBBaseMixin
-from dbsession import get_db_engine
+from mo9mo9db.base_mixin import DBBaseMixin
+from mo9mo9db.dbsession import get_db_engine
 
 engine = get_db_engine()
 Base = declarative_base()
