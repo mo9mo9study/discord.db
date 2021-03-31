@@ -13,19 +13,22 @@ class Studytimelogs(DBBaseMixin, Base):
     guild_id = Column(String(20), unique=False)
     member_id = Column(String(20), unique=False)
     voice_id = Column(String(20), unique=False)
+    access = Column(String(10), unique=False)
     studytime_min = Column(Integer, unique=False)
-    tag_id = Column(String(20), unique=False)
+    studytag_no = Column(String(10), unique=False)
 
     def __init__(self,
                  study_dt=None,
                  guild_id=None,
                  member_id=None,
                  voice_id=None,
+                 access=None,
                  studytime_min=None,
                  studytag_no=None):
         self.study_dt = study_dt
         self.guild_id = guild_id
         self.member_id = member_id
+        self.access = access
         self.voice_id = voice_id
         self.studytime_min = studytime_min
         self.studytag_no = studytag_no
@@ -64,15 +67,20 @@ class Studytags(DBBaseMixin, Base):
     member_id = Column(String(20), unique=True)
     tag_name = Column(String(40), unique=True)
     tag_default = Column(Boolean)
+    member_id = Column(String(20), unique=True)
+    existence = Column(Boolean)
 
     def __init__(self,
                  member_id=None,
                  tag_name=None,
-                 tag_default=None):
+                 tag_default=None,
+                 member_id=None,
+                 existence=None):
         self.member_id = member_id
         self.tag_name = tag_name
         self.tag_default = tag_default
-
+        self.member_id = member_id
+        self.existence = existence
 
 # Base.metadata.drop_all(bind=engine)
 Base.metadata.create_all(bind=engine)
