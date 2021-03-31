@@ -16,6 +16,7 @@ class Studytimelogs(DBBaseMixin, Base):
     access = Column(String(10), unique=False)
     studytime_min = Column(Integer, unique=False)
     studytag_no = Column(String(10), unique=False)
+    excluded_record = Column(Boolean)
 
     def __init__(self,
                  study_dt=None,
@@ -24,7 +25,8 @@ class Studytimelogs(DBBaseMixin, Base):
                  voice_id=None,
                  access=None,
                  studytime_min=None,
-                 studytag_no=None):
+                 studytag_no=None,
+                 excluded_record=None):
         self.study_dt = study_dt
         self.guild_id = guild_id
         self.member_id = member_id
@@ -32,6 +34,7 @@ class Studytimelogs(DBBaseMixin, Base):
         self.voice_id = voice_id
         self.studytime_min = studytime_min
         self.studytag_no = studytag_no
+        self.excluded_record = excluded_record
 
 
 class Studymembers(DBBaseMixin, Base):
@@ -83,5 +86,5 @@ class Studytags(DBBaseMixin, Base):
         self.tag_default = tag_default
         self.existence = existence
 
-Base.metadata.drop_all(bind=engine)
+# Base.metadata.drop_all(bind=engine)
 Base.metadata.create_all(bind=engine)
