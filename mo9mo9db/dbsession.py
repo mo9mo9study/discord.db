@@ -7,11 +7,7 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy_utils import database_exists, create_database
 from sqlalchemy.ext.declarative import declarative_base
 
-dirpath = os.path.dirname(__file__)
-sys.path.append(dirpath)
-print(f"--->追加したパス： {dirpath}")
-print(f"--->sys.path　： {sys.path}")
-import dbconfig as cfg  # noqa: E402
+import mo9mo9db.dbconfig as cfg  # noqa: E402
 
 Base = declarative_base()
 
