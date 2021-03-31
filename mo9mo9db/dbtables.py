@@ -41,7 +41,8 @@ class Studymembers(DBBaseMixin, Base):
     selfintroduction_id = Column(String(20), unique=True)
     times_id = Column(String(20), unique=True)
     joined_dt = Column(DateTime, unique=False)
-    organize = Column(Boolean)
+    norecord_onemonth = Column(Boolean)
+    norecord_twomonth = Column(Boolean)
     enrollment = Column(Boolean)
 
     def __init__(self,
@@ -51,7 +52,8 @@ class Studymembers(DBBaseMixin, Base):
                  selfintroduction_id=None,
                  times_id=None,
                  joined_dt=None,
-                 organize=None,
+                 norecord_onemonth=None,
+                 norecord_twomonth=None,
                  enrollment=None):
         self.guild_id = guild_id
         self.member_id = member_id
@@ -59,7 +61,8 @@ class Studymembers(DBBaseMixin, Base):
         self.selfintroduction_id = selfintroduction_id
         self.times_id = times_id
         self.joined_dt = joined_dt
-        self.organize = organize
+        self.norecord_onemonth = norecord_onemonth
+        self.norecord_twomonth = norecord_twomonth
         self.enrollment = enrollment
 
 
