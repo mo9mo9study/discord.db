@@ -74,13 +74,11 @@ class Studytags(DBBaseMixin, Base):
                  member_id=None,
                  tag_name=None,
                  tag_default=None,
-                 member_id=None,
                  existence=None):
         self.member_id = member_id
         self.tag_name = tag_name
         self.tag_default = tag_default
-        self.member_id = member_id
         self.existence = existence
 
-# Base.metadata.drop_all(bind=engine)
+Base.metadata.drop_all(bind=engine)
 Base.metadata.create_all(bind=engine)
