@@ -2,6 +2,21 @@
 ```py
 pip install mo9mo9db
 # https://pypi.org/project/mo9mo9db/
+
+# このパッケージを使用する側のディレクトリに.envのファイルを作成する
+# .envファイル内に以下のDB情報とパラメータ情報を入力することが必須
+vi .env
+> .env ------------------------
+###==============================
+#MYSQL credential
+###==============================
+DB_USER=''
+DB_PASSWORD=''
+DB_HOST=''
+DB_PORT=''
+DB_DATABASE=''
+DB_ECHO=''
+------------------------------
 ```
 
 # about
