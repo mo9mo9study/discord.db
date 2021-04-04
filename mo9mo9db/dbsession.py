@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import sys
+from distutils.util import strtobool
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -39,7 +40,7 @@ def get_db_engine():
                            encoding='utf-8',
                            pool_size=5,
                            convert_unicode=True,
-                           echo=True)
+                           echo=strtobool(cfg.DB_echo))
     if not database_exists(engine.url):  # DBの存在チェックと作成用
         create_database(engine.url)
     return engine
