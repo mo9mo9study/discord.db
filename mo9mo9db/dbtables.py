@@ -40,7 +40,7 @@ class Studytimelogs(DBBaseMixin, Base):
 class Studymembers(DBBaseMixin, Base):
     guild_id = Column(String(20), unique=False)
     member_id = Column(String(20), unique=True, primary_key=True)
-    member_name = Column(String(40), unique=True)
+    member_name = Column(String(50))
     selfintroduction_id = Column(String(20), unique=True)
     times_id = Column(String(20), unique=True)
     joined_dt = Column(DateTime, unique=False)
