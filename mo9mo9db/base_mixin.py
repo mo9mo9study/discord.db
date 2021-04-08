@@ -19,7 +19,7 @@ class DBBaseMixin(object):
 
     @declared_attr
     def updated_at(cls):
-        return Column(DateTime, default=datetime.now, nullable=True)
+        return Column(DateTime, default=datetime.now, nullable=True, onupdate=datetime.now)
 
     @declared_attr
     def __tablename__(cls):
