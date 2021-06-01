@@ -41,31 +41,19 @@ class Studymembers(DBBaseMixin, Base):
     guild_id = Column(String(20), unique=False)
     member_id = Column(String(20), unique=True, primary_key=True)
     member_name = Column(String(50))
-    selfintroduction_id = Column(String(20), unique=True)
-    times_id = Column(String(20), unique=True)
     joined_dt = Column(DateTime, unique=False)
-    norecord_onemonth = Column(Boolean)
-    norecord_twomonth = Column(Boolean)
     enrollment = Column(Boolean)
 
     def __init__(self,
                  guild_id=None,
                  member_id=None,
                  member_name=None,
-                 selfintroduction_id=None,
-                 times_id=None,
                  joined_dt=None,
-                 norecord_onemonth=None,
-                 norecord_twomonth=None,
                  enrollment=None):
         self.guild_id = guild_id
         self.member_id = member_id
         self.member_name = member_name
-        self.selfintroduction_id = selfintroduction_id
-        self.times_id = times_id
         self.joined_dt = joined_dt
-        self.norecord_onemonth = norecord_onemonth
-        self.norecord_twomonth = norecord_twomonth
         self.enrollment = enrollment
 
 
@@ -85,6 +73,48 @@ class Studytags(DBBaseMixin, Base):
         self.tag_name = tag_name
         self.tag_default = tag_default
         self.existence = existence
+
+
+class Times(DBBaseMixin, Base):
+    guild_id = Column(String(20), unique=False)
+    member_id = Column(String(20), unique=True)
+    times_id = Column(String(20), unique=True)
+    def __init__(self,
+                 guild_id=None,
+                 member_id=None,
+                 times_id=None,):
+        self.guild_id = guild_id
+        self.member_id = member_id
+        self.times_id = times_id
+
+
+class Membersexperience(DBBaseMixin, Base):
+    member_id = Column(String(20), unique=True)
+    level = Column(Integer, unique=False)
+    experience_studytime = Column(Integer, unique=False)
+
+    def __init__(self,
+                 member_id=None,
+                 level=None,
+                 experience_studytime=None):
+        self.member_id = member_id
+        self.level = level
+        self.experience_studytime = experience_studytime
+
+
+class Experiencevaluetable(DBBaseMixin, Base):
+    levels = Column(Integer, unique=True)
+    experience_min = Column(Integer, unique=False)
+    experience_max = Column(Integer, unique=False)
+
+    def __init__(self,
+                 levels=None,
+                 experience_min=None,
+                 experience_max=None,):
+        self.levels = levels
+        self.experience_min = experience_min
+        self.experience_max = experience_max
+
 
 # Base.metadata.drop_all(bind=engine)
 Base.metadata.create_all(bind=engine)
