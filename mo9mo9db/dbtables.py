@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer, DateTime, Boolean
+from sqlalchemy import Column, String, Integer, DateTime, Boolean, Text
 from sqlalchemy.ext.declarative import declarative_base
 
 from mo9mo9db.base_mixin import DBBaseMixin
@@ -69,6 +69,35 @@ class Studymembers(DBBaseMixin, Base):
         self.enrollment = enrollment
 
 
+class Selfintroduction(DBBaseMixin, Base):
+    guild_id = Column(String(20), unique=False)
+    member_id = Column(String(20), unique=True, primary_key=True)
+    nickname = Column(String(50))
+    sex = Column(String(20))
+    twitter_id = Column(String(50))
+    specialty = Column(Text)
+    before_study = Column(Text)
+    after_study = Column(Text)
+
+    def __init__(self,
+                 guild_id=None,
+                 member_id=None,
+                 nickname=None,
+                 sex=None,
+                 twitter_id=None,
+                 specialty=None,
+                 before_study=None,
+                 after_study=None):
+        self.guild_id = guild_id
+        self.member_id = member_id
+        self.nickname = nickname
+        self.sex = sex
+        self.twitter_id = twitter_id
+        self.specialty = specialty
+        self.before_study = before_study
+        self.after_study = after_study
+
+
 class Studytags(DBBaseMixin, Base):
     member_id = Column(String(20), unique=True)
     tag_name = Column(String(40), unique=True)
@@ -85,6 +114,7 @@ class Studytags(DBBaseMixin, Base):
         self.tag_name = tag_name
         self.tag_default = tag_default
         self.existence = existence
+
 
 # Base.metadata.drop_all(bind=engine)
 Base.metadata.create_all(bind=engine)
