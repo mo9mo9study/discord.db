@@ -39,7 +39,7 @@ class Studytimelogs(DBBaseMixin, Base):
 
 class Studymembers(DBBaseMixin, Base):
     guild_id = Column(String(20), unique=False)
-    member_id = Column(String(20), unique=True, primary_key=True)
+    member_id = Column(String(20), unique=True)
     member_name = Column(String(50))
     joined_dt = Column(DateTime, unique=False)
     enrollment = Column(Boolean)
@@ -57,28 +57,11 @@ class Studymembers(DBBaseMixin, Base):
         self.enrollment = enrollment
 
 
-class Studytags(DBBaseMixin, Base):
-    member_id = Column(String(20), unique=True)
-    tag_name = Column(String(40), unique=True)
-    tag_default = Column(Boolean)
-    member_id = Column(String(20), unique=True)
-    existence = Column(Boolean)
-
-    def __init__(self,
-                 member_id=None,
-                 tag_name=None,
-                 tag_default=None,
-                 existence=None):
-        self.member_id = member_id
-        self.tag_name = tag_name
-        self.tag_default = tag_default
-        self.existence = existence
-
-
 class Times(DBBaseMixin, Base):
     guild_id = Column(String(20), unique=False)
     member_id = Column(String(20), unique=True)
     times_id = Column(String(20), unique=True)
+
     def __init__(self,
                  guild_id=None,
                  member_id=None,
