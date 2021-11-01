@@ -86,20 +86,6 @@ class Selfintroduction(DBBaseMixin, Base):
         self.after_study = after_study
 
 
-class Times(DBBaseMixin, Base):
-    guild_id = Column(String(20), unique=False)
-    member_id = Column(String(20), unique=True)
-    times_id = Column(String(20), unique=True)
-
-    def __init__(self,
-                 guild_id=None,
-                 member_id=None,
-                 times_id=None,):
-        self.guild_id = guild_id
-        self.member_id = member_id
-        self.times_id = times_id
-
-
 class Membersexperience(DBBaseMixin, Base):
     member_id = Column(String(20), unique=True)
     level = Column(Integer, unique=False)
