@@ -61,7 +61,7 @@ class Selfintroduction(DBBaseMixin, Base):
     guild_id = Column(String(20), unique=False)
     member_id = Column(String(20), unique=True, primary_key=True)
     nickname = Column(String(50))
-    sex = Column(String(20))
+    gender = Column(String(20))
     twitter_id = Column(String(50))
     specialty = Column(Text)
     before_study = Column(Text)
@@ -71,7 +71,7 @@ class Selfintroduction(DBBaseMixin, Base):
                  guild_id=None,
                  member_id=None,
                  nickname=None,
-                 sex=None,
+                 gender=None,
                  twitter_id=None,
                  specialty=None,
                  before_study=None,
@@ -79,7 +79,7 @@ class Selfintroduction(DBBaseMixin, Base):
         self.guild_id = guild_id
         self.member_id = member_id
         self.nickname = nickname
-        self.sex = sex
+        self.gender = gender
         self.twitter_id = twitter_id
         self.specialty = specialty
         self.before_study = before_study
