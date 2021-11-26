@@ -59,13 +59,15 @@ class Studymembers(DBBaseMixin, Base):
 
 class Selfintroduction(DBBaseMixin, Base):
     guild_id = Column(String(20), unique=False)
-    member_id = Column(String(20), unique=True, primary_key=True)
+    member_id = Column(String(20), unique=True)
     nickname = Column(String(50))
     gender = Column(String(20))
     twitter_id = Column(String(50))
     specialty = Column(Text)
     before_study = Column(Text)
     after_study = Column(Text)
+    sendmsg_id = Column(String(20))
+    mod_column = Column(String(20))
 
     def __init__(self,
                  guild_id=None,
@@ -75,7 +77,11 @@ class Selfintroduction(DBBaseMixin, Base):
                  twitter_id=None,
                  specialty=None,
                  before_study=None,
-                 after_study=None):
+                 after_study=None,
+                 sendmsg_id=None,
+                 mod_column=None,
+                 ):
+
         self.guild_id = guild_id
         self.member_id = member_id
         self.nickname = nickname
@@ -84,6 +90,8 @@ class Selfintroduction(DBBaseMixin, Base):
         self.specialty = specialty
         self.before_study = before_study
         self.after_study = after_study
+        self.sendmsg_id = sendmsg_id
+        self.mod_colmun = mod_column
 
 
 class Membersexperience(DBBaseMixin, Base):
