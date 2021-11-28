@@ -58,8 +58,8 @@ class Studymembers(DBBaseMixin, Base):
 
 
 class Selfintroduction(DBBaseMixin, Base):
-    guild_id = Column(String(20), unique=False)
-    member_id = Column(String(20), unique=True)
+    guild_id = Column(String(20), primary_key=True)
+    member_id = Column(String(20), primary_key=True)
     nickname = Column(String(50))
     gender = Column(String(20))
     twitter_id = Column(String(50))
