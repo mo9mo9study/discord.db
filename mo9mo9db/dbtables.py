@@ -9,6 +9,7 @@ Base = declarative_base()
 
 
 class Studytimelogs(DBBaseMixin, Base):
+    id = Column('id', Integer, primary_key=True, autoincrement=True)
     study_dt = Column(DateTime, unique=False)
     guild_id = Column(String(20), unique=False)
     member_id = Column(String(20), unique=False)
@@ -38,6 +39,7 @@ class Studytimelogs(DBBaseMixin, Base):
 
 
 class Studymembers(DBBaseMixin, Base):
+    id = Column('id', Integer, primary_key=True, autoincrement=True)
     guild_id = Column(String(20), unique=False)
     member_id = Column(String(20), unique=True)
     member_name = Column(String(50))
@@ -58,6 +60,9 @@ class Studymembers(DBBaseMixin, Base):
 
 
 class Selfintroduction(DBBaseMixin, Base):
+    __table_args__ = ({"mysql_charset": "utf8mb4",
+                       "mysql_row_format": "DYNAMIC"})
+    id = Column('id', Integer, primary_key=True, autoincrement=True)
     guild_id = Column(String(20), primary_key=True)
     member_id = Column(String(20), primary_key=True)
     nickname = Column(String(50))
