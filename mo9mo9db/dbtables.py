@@ -62,7 +62,7 @@ class Studymembers(DBBaseMixin, Base):
 class Selfintroduction(DBBaseMixin, Base):
     __table_args__ = ({"mysql_charset": "utf8mb4",
                        "mysql_row_format": "DYNAMIC"})
-    id = Column('id', Integer, primary_key=True, autoincrement=True)
+    id = Column('id', Integer, autoincrement=True)
     guild_id = Column(String(20), primary_key=True)
     member_id = Column(String(20), primary_key=True)
     nickname = Column(String(50))
