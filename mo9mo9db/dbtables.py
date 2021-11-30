@@ -99,33 +99,4 @@ class Selfintroduction(DBBaseMixin, Base):
         self.mod_colmun = mod_column
 
 
-class Membersexperience(DBBaseMixin, Base):
-    member_id = Column(String(20), unique=True)
-    level = Column(Integer, unique=False)
-    experience_studytime = Column(Integer, unique=False)
-
-    def __init__(self,
-                 member_id=None,
-                 level=None,
-                 experience_studytime=None):
-        self.member_id = member_id
-        self.level = level
-        self.experience_studytime = experience_studytime
-
-
-class Experiencevaluetable(DBBaseMixin, Base):
-    levels = Column(Integer, unique=True)
-    experience_min = Column(Integer, unique=False)
-    experience_max = Column(Integer, unique=False)
-
-    def __init__(self,
-                 levels=None,
-                 experience_min=None,
-                 experience_max=None,):
-        self.levels = levels
-        self.experience_min = experience_min
-        self.experience_max = experience_max
-
-
-# Base.metadata.drop_all(bind=engine)
 Base.metadata.create_all(bind=engine)
