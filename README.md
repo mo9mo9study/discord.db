@@ -42,9 +42,35 @@ git config core.hooksPath .githooks
 # Future
 -
 
-# pypiに新しいバージョンをuploadする簡易手順
+# このパッケージを更新(upload)する方法
+## 共通
+```sh
+## pythonの環境を作成・接続
+python3 -m venv venv
+source venv/bin/activate
+## アップロード用のパッケージインストール
+pip install wheel twine
 ```
-# setup.cfgのバージョンを更新すること
+### pypiの本番環境にuploadする手順
+```sh
+# (必須)setup.cfgのバージョンを更新すること
+rm dist/*
 python setup.py bdist_wheel
 twine upload --repository pypi dist/*
+```
+### test.pypiの開発環境にuploadする手順
+```sh
+## pypiへの準備・アップロード
+python setup.py bdist_wheel
+twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+```
+- test.pypiからパッケージインストール
+```sh
+# ※ pip install時にパッケージが見つからないとエラーが出力された場合、
+# ※ 個別にpip installしてから改めて自作パッケージをインストールする.
+# ※ pip install -U PyMySQL
+# バージョンを指定する必要がある.
+# test.pypiのURL
+# https://test.pypi.org/project/mo9mo9db/
+pip install -i https://test.pypi.org/simple/ mo9mo9db
 ```
