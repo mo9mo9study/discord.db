@@ -55,7 +55,9 @@ git config core.hooksPath .githooks
 ```sh
 # v0.0.20のタグを付与する場合
 # 通常のpushではtagは付与されないので別途pushが必要
-git tag v0.0.20
+# タグ付作業は(test.)pypiにアップロード後を想定
+## git tag': git tag -a v0.0.31 -m "https://test.pypi.org/project/mo9mo9db/0.0.31/"
+git tag -a v0.0.20 "{pypi_version_link}"
 git push origin v0.0.20
 ```
 
