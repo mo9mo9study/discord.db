@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import Column, Integer, DateTime, text
+from sqlalchemy import Column, DateTime, text
 from sqlalchemy.ext.declarative import declared_attr
 from sqlalchemy.sql.functions import current_timestamp
 
@@ -8,7 +8,6 @@ from mo9mo9db.dbsession import get_db_session
 
 
 class DBBaseMixin(object):
-    id = Column('id', Integer, primary_key=True, autoincrement=True)
 
     def __repr__(self):
         return '<{0}.{1} object at {2}>'.format(
@@ -16,18 +15,18 @@ class DBBaseMixin(object):
 
     @declared_attr
     def created_at(cls):
-        return Column(DateTime, 
-            default=datetime.now, 
-            nullable=True, 
-            server_default=current_timestamp())
+        return Column(DateTime,
+                      default=datetime.now,
+                      nullable=True,
+                      server_default=current_timestamp())
 
     @declared_attr
     def updated_at(cls):
-        return Column(DateTime, 
-            default=datetime.now, 
-            nullable=True, 
-            onupdate=datetime.now, 
-            server_default=text('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))
+        return Column(DateTime,
+                      default=datetime.now,
+                      nullable=True,
+                      onupdate=datetime.now,
+                      server_default=text('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))  # noqa: E501
 
     @declared_attr
     def __tablename__(cls):
